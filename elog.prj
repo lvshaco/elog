@@ -1,0 +1,14 @@
+elog=~/elog CD=. filter="*" {
+ Makefile
+ README.md
+ elog.c
+ elog.prj
+ elog_appender_file.c
+ elog_appender_rollfile.c
+ elog.h
+ elog_appender.h
+ elog_appender_file.h
+ elog_appender_rollfile.h
+ elog_include.h
+ elog_internal.h
+}
