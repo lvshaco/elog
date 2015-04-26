@@ -20,3 +20,5 @@ elog_appender_rollfile_config(el, &conf);
 the appender interface define in elog_appender.h, refrence 
 * elog_appender_file
 * elog_appender_rollfile
+
+TEST
