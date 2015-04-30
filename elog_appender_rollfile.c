@@ -65,9 +65,6 @@ _rollover(struct appender_data* od) {
     FILE* fp = fopen(filename, "w+");
     if (fp == NULL) {
         fp = stderr;
-        printf("open zero file: stderr\n");
-    } else {
-        printf("open zero file: %s\n", filename);
     }
     setbuf(fp, NULL);
     od->current_fp = fp;
