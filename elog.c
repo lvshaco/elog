@@ -9,8 +9,8 @@ elog_create(const char* filename) {
     if (filename == NULL)
         return NULL;
     
-    struct elog* self = malloc(sizeof(*self));
-    self->filename = malloc(strlen(filename)+1);
+    struct elog* self = sh_malloc(sizeof(*self));
+    self->filename = sh_malloc(strlen(filename)+1);
     strcpy(self->filename, filename);
     
     self->appender = NULL;
@@ -24,8 +24,8 @@ elog_free(struct elog* self) {
     if (self->appender) {
         self->appender->close(self);
     }
-    free(self->filename);
-    free(self);
+    sh_free(self->filename);
+    sh_free(self);
 }
 
 void 

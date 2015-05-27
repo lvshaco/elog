@@ -32,12 +32,12 @@ _set_filemaxnum(struct elog* self, struct appender_data* od, int max) {
         return;
     if (max <= od->conf.file_max_num)
         return;
-    od->filenames = realloc(od->filenames, sizeof(char*) * max);
+    od->filenames = sh_realloc(od->filenames, sizeof(char*) * max);
 
     int len = strlen(self->filename) + 10 + 2;
     int i;
     for (i=od->conf.file_max_num; i<max; ++i) {
-        od->filenames[i] = malloc(len);
+        od->filenames[i] = sh_malloc(len);
         if (i == 0)
             snprintf(od->filenames[i], len, "%s", self->filename);
         else
@@ -80,7 +80,7 @@ elog_rollfile_open(struct elog* self, const char *mode) {
     }
     setbuf(fp, NULL);
 
-    struct appender_data* od = malloc(sizeof(*od));
+    struct appender_data* od = sh_malloc(sizeof(*od));
     memset(od, 0, sizeof(*od));
 
     od->conf.file_max_size = 1024*1024*1024; // default 1G
@@ -109,11 +109,11 @@ elog_rollfile_close(struct elog* self) {
     }
     if (od->filenames) {
         for (i=0; i<od->conf.file_max_num; ++i) {
-            free(od->filenames[i]);
+            sh_free(od->filenames[i]);
         }
-        free(od->filenames);
+        sh_free(od->filenames);
     }
-    free(od);
+    sh_free(od);
     self->od = NULL;
 }
 

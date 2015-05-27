@@ -21,7 +21,7 @@ elog_file_open(struct elog* self, const char *mode) {
     } else {
         fp = stderr;
     }
-    struct appender_data* od = malloc(sizeof(*od));
+    struct appender_data* od = sh_malloc(sizeof(*od));
     od->fp = fp;
     setbuf(od->fp, NULL);
     
@@ -40,7 +40,7 @@ elog_file_close(struct elog* self) {
         fclose(od->fp);
         od->fp = NULL;
     }
-    free(od);
+    sh_free(od);
     self->od = NULL;
 }
 
